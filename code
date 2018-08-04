@@ -1,0 +1,25 @@
+options validvarname=any;
+
+data ex;
+input group $ var1 var2 ;
+cards;
+a 1 5
+a 2 6
+a 3 7
+b 3 7
+b 4 8
+b 5 9
+c 3 4
+c 6 8
+;
+run;
+
+data ccc(keep=group v new_var);
+set ex;
+array arr var1 var2;
+do over arr;
+v=vname(arr);
+new_var=arr;
+output;
+end;
+run;
